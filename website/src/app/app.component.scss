@@ -1,0 +1,38 @@
+.master {
+    padding: 10px 40px;
+}
+
+.jei-items {
+    width: calc(50% - 40px);
+    float: left;
+}
+
+.jei-recipes {
+    width: calc(50% - 40px);
+    float: right;
+    background: #3b3b3b;
+    border-radius: 20px;
+}
+
+.title {
+    text-align: center;
+    font-size: 35pt;
+    color: white;
+}
+
+@media (max-width: 900px) {
+    .master {
+        padding: 10px 10px;
+        overflow: hidden;
+    }
+
+    .jei-items {
+        width: 100%;
+    }
+
+    .jei-recipes {
+        width: 100%;
+        margin-top: 50px;
+        margin-bottom: 250px;
+    }
+}

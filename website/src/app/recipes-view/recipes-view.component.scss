@@ -1,0 +1,118 @@
+.master {
+    background: #303030;
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+}
+
+.top-btn-div {
+    display: flex;
+    flex-direction: row;
+    gap: 2px;
+    height: 30px;
+    
+    button {
+        flex: 10;
+        font-size: 15pt;
+    }
+
+    button.reset {
+        flex: 1;
+    }
+}
+
+.topbar {
+    display: flex;
+    flex-shrink: 0;
+    background: #414141;
+    padding: 10px 20px;
+    border-bottom: 2px solid #727171;
+
+    overflow: auto;
+
+    white-space: nowrap;
+
+    &::-webkit-scrollbar {
+        height: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #aaa;
+        border-radius: 4px;
+    }
+
+    .page-btn {
+        margin-right: 10px;
+        padding: 6px 12px;
+        border: none;
+        border-radius: 4px;
+        background: #d9d9d9;
+        cursor: pointer;
+        flex-shrink: 0;
+
+        &.active {
+            background: #007bff;
+            color: #fff;
+        }
+
+        &:hover {
+            background: #c0c0c0;
+        }
+    }
+}
+
+.columns-div {
+    display: flex;
+    flex: 1;
+}
+
+.column {
+    padding: 20px;
+
+    width: 50%;
+    background: #272727;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 50px);
+    grid-auto-rows: 50px;
+    gap: 10px;
+
+    clear: both;
+
+    &.grid-cols-1 { grid-template-columns: repeat(1, 1fr); }
+    &.grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+    &.grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+    &.grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+    &.grid-cols-5 { grid-template-columns: repeat(5, 1fr); }
+}
+
+.header {
+    text-align: center;
+}
+
+hr {
+    height: 1px;
+    padding: 0px;
+    margin: 0px 0px;
+    background-color: #272727;
+}
+
+.column.center-arrow {
+    flex-direction: column;
+
+    background-image: url('/assets/processing_arrow.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 80px;
+    width: 80px;
+}
+
+.small-info {
+    background-color: transparent;
+    text-align: center;
+    font-size: 18pt;
+    padding: 50px;
+    color: lightcoral;
+}

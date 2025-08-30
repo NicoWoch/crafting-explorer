@@ -1,0 +1,58 @@
+<div class="master">
+    @if (getGoBackSteps() > 0) {
+        <div class="top-btn-div">
+            <button (click)="goBack()">Back{{ getGoBackSteps() == 1 ? '' : ' (' + getGoBackSteps() + ')' }}</button>
+
+            @if (getGoBackSteps() >= 2) {
+                <button class="reset" (click)="reset()">Reset</button>
+            }
+        </div>
+    }
+
+    @if (recipes && recipes.size !== 0) {
+        <div class="topbar">
+            @for (category of recipes.keys(); track category) {
+                <button
+                    class="page-btn{{(category === activeCategory) ? ' active' : '' }}"
+                    (click)="activeCategory = category.toString()"
+                >
+                    {{ category }}
+                </button>
+            } @empty {
+                No categories found
+            }
+        </div>
+
+        @for (recipe of recipes.get(activeCategory) ?? []; track $index) {
+            <div class="columns-div">
+                <div class="column">
+                    <div class="grid{{ categories_specifics.get(activeCategory).getInputGridClass() }}">
+                        @for (slot of recipe.inputs; track $index) {
+                            <app-item [items]="slot"></app-item>
+                        }
+                    </div>
+                </div>
+
+                <div class="column center-arrow"></div>
+
+                <div class="column">
+                    <div class="grid{{ categories_specifics.get(activeCategory).getOutputGridClass() }}">
+                        @for (slot of recipe.outputs; track $index) {
+                            <app-item [items]="slot"></app-item>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            @if (!$last) {
+                <hr>
+            }
+        } @empty {
+            No recipes found
+        }
+    } @else if (recipes && recipes.size === 0) {
+        <span class="small-info">No recipes found</span>
+    } @else {
+        <span class="small-info">Click on an item to show all its recipes</span>
+    }
+</div>

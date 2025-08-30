@@ -1,0 +1,32 @@
+<div
+    class="item"
+    (click)="onLeftClick($event)"
+    (contextmenu)="onRightClick($event)"
+>
+    <img
+        [src]="current_icon_src"
+        class="bg"
+        alt=""
+        (error)="onIconError($event)"
+    >
+
+    @if (current_item !== undefined) {
+        <span class="item_count">{{ (current_item.count === 1) ? '' : current_item.count }}</span>
+
+        <span class="tooltip">
+            <span [innerHTML]="getCurrentItemDisplayName() | minecraftColors"></span>
+            <span class="details">{{ getCurrentItemDisplayNameDetails() }}</span>
+
+            <div class="specific_tooltip">
+                <table>
+                    @for (entry of current_item_details; track $index) {
+                        <tr>
+                            <td>{{ entry[0] }}</td>
+                            <td>{{ entry[1] }}</td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </span>
+    }
+</div>

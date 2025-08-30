@@ -1,0 +1,73 @@
+buildscript {
+	repositories {
+		maven { url = "https://maven.minecraftforge.net/" }
+		mavenCentral()
+	}
+	
+	dependencies {
+		classpath group: "net.minecraftforge.gradle", name: "ForgeGradle", version: "2.3-SNAPSHOT"
+	}
+}
+
+apply plugin: "net.minecraftforge.gradle.forge"
+
+repositories {
+	maven { url = "https://maven.minecraftforge.net/" }
+	mavenCentral()
+
+	maven {
+		// location of the maven that hosts JEI files
+		name = "Progwml6 maven"
+		url = "https://dvs1.progwml6.com/files/maven/"
+	}
+	maven {
+		// location of a maven mirror for JEI files, as a fallback
+		name = "ModMaven"
+		url = "https://modmaven.dev"
+	}
+}
+
+
+version = "1.0"
+group = "com.nicowoch.recipe_exporter"
+archivesBaseName = "recipe_exporter"
+
+sourceCompatibility = targetCompatibility = "1.8"
+
+minecraft {
+	version = "${mc_version}-${forge_version}"
+	runDir = "run"
+	mappings = "stable_39"
+	makeObfSourceJar = false
+}
+
+dependencies {
+	implementation 'com.google.code.gson:gson:2.10.1'
+
+	// compile against the JEI API but do not include it at runtime
+	deobfProvided "mezz.jei:jei_${mc_version}:${jei_version}:api"
+	// at runtime, use the full JEI jar
+	runtime "mezz.jei:jei_${mc_version}:${jei_version}"
+}
+
+processResources {
+	inputs.property "version", project.version
+	
+	filesMatching("mcmod.info") {
+		expand "version": project.version
+	}
+}
+
+tasks.register('showDependencyUrls') {
+	group = "debug"
+
+	doLast {
+		configurations.runtimeClasspath.resolvedConfiguration.resolvedArtifacts.each { artifact ->
+			println "${artifact.moduleVersion.id} -> ${artifact.file.toURI()}"
+		}
+	}
+
+	doLast {
+		println buildscript.configurations.classpath.files
+	}
+}
