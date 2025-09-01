@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -8,6 +8,8 @@ import { FormsModule } from '@angular/forms';
     styleUrl: './file-prompt.component.scss',
 })
 export class FilePromptComponent {
+    @Input() public allowedExtensions!: string
+
     @Output() public fileSelected: EventEmitter<File> = new EventEmitter()
 
     protected onFileSelected(event: Event) {

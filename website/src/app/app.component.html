@@ -1,7 +1,9 @@
 <div class="file-prompt" [class.hide]="is_explorer_opened">
-    <h1>Select exported data file to open</h1>
+    <h1 class="title">Select exported data file to open</h1>
+
+    <p>Example export files can be found on <a href="https://github.com/NicoWoch/crafting-explorer/tree/main/exports" target="_blank">github</a></p>
     
-    <app-file-prompt (fileSelected)="selected_file = $event"></app-file-prompt>
+    <app-file-prompt (fileSelected)="selected_file = $event" allowedExtensions=".json"></app-file-prompt>
     
     <button class="btn btn-success" (click)="open_selected_file()">Open</button>
 
