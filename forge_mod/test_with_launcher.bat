@@ -13,6 +13,8 @@ if %ERRORLEVEL% NEQ 0 (
     exit /b
 )
 
+echo Building mod finished!
+
 echo.
 echo =============================
 echo   Copying mod to .minecraft
@@ -28,7 +30,7 @@ if %ERRORLEVEL% NEQ 0 (
 
 echo.
 echo ============================================
-echo       Starting TLauncher for Minecraft
+echo       Starting launcher for Minecraft
 echo ============================================
 echo.
 
