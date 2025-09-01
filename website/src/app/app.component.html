@@ -1,4 +1,16 @@
-<div class="master">
+<div class="file-prompt" [class.hide]="is_explorer_opened">
+    <h1>Select exported data file to open</h1>
+    
+    <app-file-prompt (fileSelected)="selected_file = $event"></app-file-prompt>
+    
+    <button class="btn btn-success" (click)="open_selected_file()">Open</button>
+
+    <br><br>
+    <span class="error">{{ error_message }}</span>
+</div>
+
+
+<div class="explorer" [class.hide]="!is_explorer_opened">
     <div class="jei-items">
         <h1 class="title">All Jei Items</h1>
 
