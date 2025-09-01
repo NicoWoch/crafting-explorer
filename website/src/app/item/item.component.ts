@@ -16,22 +16,37 @@ export interface ItemInfo {
     imports: [MinecraftColorsPipe]
 })
 export class ItemComponent {
+    public static STOP_SWITCHING: number = 100000000000000
+
     @Input({required: true}) items: ItemInfo[] = []
 
-    @Input() switch_interval: number = 2000
+    @Input() switch_interval: number = 1000
 
     protected current_icon_src: string = ''
     protected current_index: number = 0
 
+    private interval: any | null = null;
+
     constructor(private recipes_view_service: RecipesViewService) {}
 
     protected ngOnInit() {
-        setInterval(() => this.nextItem(), this.switch_interval)
+        this.updateInterval()
     }
 
     protected ngOnChanges() {
         this.current_index = -1
         this.nextItem()
+        this.updateInterval()
+    }
+
+    private updateInterval() {
+        if (this.interval !== null) {
+            clearInterval(this.interval)
+        }
+
+        if (this.switch_interval < ItemComponent.STOP_SWITCHING) {
+            this.interval = setInterval(() => this.nextItem(), this.switch_interval)
+        }
     }
 
     protected get current_item(): ItemInfo | undefined {
@@ -53,6 +68,8 @@ export class ItemComponent {
 
     public nextItem() {
         if (this.items.length === 0) {
+            this.current_index = 0;
+            this.current_icon_src = 'assets/empty_item.png'
             return
         }
 
@@ -104,9 +121,9 @@ export class ItemComponent {
     protected onIconError(event: Event) {
         const img = event.target as HTMLImageElement;
         
-        // this.failed_icons.add(img.src)
+        this.failed_icons.add(img.src)
 
-        // img.src = '/assets/icon_not_found.png';
+        img.src = '/assets/icon_not_found.png';
     }
 
     protected onLeftClick(event: Event) {

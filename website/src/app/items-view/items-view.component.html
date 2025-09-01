@@ -1,16 +1,25 @@
 <div>
-    <label for="search_field" style="color: white">Find Item:</label>
-    <input type="search" id="search_field" [(ngModel)]="query">
+    <div class="search-box-container">
+        <div class="search-box">
+            <label for="search_field" style="color: white">Find Item:</label>
+            <input type="search" id="search_field" [(ngModel)]="query">
+        </div>
+    </div>
 
-    <h1 style="text-align: center;">Page: {{ current_page + 1 }}</h1>
+    <div class="navigation">
+        <button class="nav-btn" (click)="previousPage()">&lt;</button>
+        <span class="page-text">Page: {{ current_page + 1 }}</span>
+        <button class="nav-btn" (click)="nextPage()">&gt;</button>
+    </div>
 
-    <button class="nav-button btn-left" (click)="previousPage()"><</button>
-    <button class="nav-button btn-right" (click)="nextPage()">></button>
+    <hr>
 
     <div class="grid">
         @for (item of items | itemsFilter:current_page:items_per_page:query; track item.item_index) {
             <app-item [items]="[item]" [switch_interval]="switch_interval"></app-item>
         }
     </div>
+
+    <hr>
 </div>
 

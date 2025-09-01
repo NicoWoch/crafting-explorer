@@ -13,11 +13,10 @@
 <div class="explorer" [class.hide]="!is_explorer_opened">
     <div class="jei-items">
         <h1 class="title">All Jei Items</h1>
-
-        <span style="color: white;">Hover longer for more info</span>
-        <br><br>
-        
+        <br>
         <app-items-view [items]="items"></app-items-view>
+        <br>
+        <p class="text-center" style="color: white;">Hover longer for more info</p>
     </div>
     
     <div class="jei-recipes">

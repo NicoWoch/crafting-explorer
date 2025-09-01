@@ -11,7 +11,8 @@ import { FormsModule } from '@angular/forms';
 })
 export class ItemsViewComponent {
     @Input() public items: ItemInfo[] = []
-    @Input() public switch_interval: number = 2000 * 100000
+
+    protected switch_interval = ItemComponent.STOP_SWITCHING
 
     protected current_page: number = 0
     protected items_per_page: number = 200

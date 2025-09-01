@@ -25,6 +25,7 @@
     }
 
     .jei-recipes {
+        margin-top: 20px;
         width: calc(50% - 40px);
         float: right;
         background: #3b3b3b;
@@ -34,10 +35,11 @@
     .title {
         text-align: center;
         font-size: 35pt;
+        margin: 10px;
     }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
     .explorer {
         padding: 10px 10px;
         overflow: hidden;

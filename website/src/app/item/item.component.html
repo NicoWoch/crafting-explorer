@@ -11,9 +11,11 @@
     >
 
     @if (current_item !== undefined) {
-        <span class="item_count">{{ (current_item.count === 1) ? '' : current_item.count }}</span>
+        <span class="item_count">
+            {{ (current_item.count === 1) ? '' : current_item.count }}
+        </span>
 
-        <span class="tooltip">
+        <span class="item-tooltip">
             <span [innerHTML]="getCurrentItemDisplayName() | minecraftColors"></span>
             <span class="details">{{ getCurrentItemDisplayNameDetails() }}</span>
 

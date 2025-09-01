@@ -47,6 +47,8 @@ export class RecipesViewComponent {
 
     protected ngOnInit() {
         this.recipes_view_service.subscribe(recipes => {
+            console.debug(recipes)
+            
             this.recipes = recipes
             this.activeCategory = this.recipes?.keys().next().value as string ?? 'Crafting'
         })
