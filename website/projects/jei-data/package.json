@@ -1,9 +1,15 @@
 {
   "name": "jei-data",
   "version": "0.0.1",
+  "scripts": {
+    "ng": "ng",
+    "build": "ng build",
+    "test": "ng test"
+  },
   "peerDependencies": {
     "@angular/common": "^19.2.0",
-    "@angular/core": "^19.2.0"
+    "@angular/core": "^19.2.0",
+    "zod": "^4.1.5"
   },
   "dependencies": {
     "tslib": "^2.3.0"
